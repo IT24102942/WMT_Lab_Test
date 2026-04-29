@@ -8,6 +8,7 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
       price: "",
       description: "",
       imageUrl: "",
+      discountPercentage: "", // ✅ new field added
     }
   );
 
@@ -21,6 +22,7 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
     onSubmit({
       ...formData,
       price: Number(formData.price),
+      discountPercentage: Number(formData.discountPercentage), // ✅ ensure numeric
     });
   };
 
@@ -41,6 +43,18 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
         value={formData.price}
         onChange={handleChange}
         required
+        min="0"
+      />
+
+      <label>Discount Percentage</label>
+      <input
+        type="number"
+        name="discountPercentage"
+        value={formData.discountPercentage}
+        onChange={handleChange}
+        required
+        min="0"
+        max="100"
       />
 
       <label>Description</label>
